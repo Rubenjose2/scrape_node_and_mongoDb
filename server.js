@@ -8,6 +8,10 @@ var cheerio = require("cheerio");
 
 // Require all models
 // var db = require("./models");
+// Require all Routes
+var routes = require("./routes/controllers.js");
+
+
 
 var PORT = 3000;
 
@@ -38,6 +42,8 @@ mongoose.connect("mongodb://localhost/newscraper", {
 
 
 
+// Starting the using of the Routing
+app.use("/", routes);
 
 // Starting the Server
 app.listen(PORT, function() {
