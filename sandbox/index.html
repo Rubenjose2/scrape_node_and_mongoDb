@@ -58,42 +58,66 @@
         </nav>
     </header>
     <main>
-        <div class="slider">
-            <ul class="slides">
-                <li>
-                    <img src="http://lorempixel.com/580/250/nature/1" alt="">
-                    <!-- random image -->
-                    <div class="caption center-align">
-                        <h3>This is our big Tagline!</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://lorempixel.com/580/250/nature/2" alt="">
-                    <!-- random image -->
-                    <div class="caption left-align">
-                        <h3>Left Aligned Caption</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://lorempixel.com/580/250/nature/3" alt="">
-                    <!-- random image -->
-                    <div class="caption right-align">
-                        <h3>Right Aligned Caption</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="http://lorempixel.com/580/250/nature/4" alt="">
-                    <!-- random image -->
-                    <div class="caption center-align">
-                        <h3>This is our big Tagline!</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-            </ul>
+        <table class="centered">
+            <thead>
+                <tr>
+                    <th data-field="id">Name</th>
+                    <th data-field="name">Item Name</th>
+                    <th data-field="price">Item Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alvin</td>
+                    <td>Eclair</td>
+                    <td>.87</td>
+                </tr>
+                <tr>
+                    <td>Alan</td>
+                    <td>Jellybean</td>
+                    <td>.76</td>
+                </tr>
+                <tr>
+                    <td>Jonathan</td>
+                    <td>Lollipop</td>
+                    <td>.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal Default</a>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Modal Header</h4>
+                <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Disagree</a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
         </div>
+
+        <form action="">
+            <div class="input-field col s12 l6">
+                <input type="text" id="first_name" class="validate">
+                <label for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s12 l6">
+                <input type="text" id="last_name" class="validate">
+                <label for="last_name">Last Name</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="email" id="email" class="validate">
+                <label for="email" data-error="wrong" data-success="right">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea id="textarea1" class="materialize-textarea"></textarea>
+                <label for="textarea1">Textarea</label>
+            </div>
+        </form>
     </main>
     <footer class="page-footer light-green">
         <div class="container">
