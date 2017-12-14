@@ -46,14 +46,16 @@ router.get("/scraper", function(req, res) {
 router.get("/table", function(req, res) {
     db.Article
         .find({})
+        .populate("note")
         .then(function(dbArticle) {
-            res.render("table", { article: dbArticle })
+            res.render("table", { article: dbArticle });
         })
         .catch(function(err) {
             console.log(err);
         });
 
-})
+});
+
 
 //This would delete or drop the collection or table of Article
 router.get("/drop", function(req, res) {
@@ -61,6 +63,38 @@ router.get("/drop", function(req, res) {
         .remove()
         .then(function() {
             res.send("Collection Dropped");
+        })
+})
+
+// THis route is to save the note associate with the Article
+
+router.post("/articles/:id", function(req, res) {
+    // Access to the Note collection
+
+    db.Note
+        .create(req.body)
+        .then(function(dbNote) {
+            return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+        })
+        .then(function(dbArticle) {
+            console.log("Note Added");
+            res.json(dbArticle);
+        })
+        .catch(function(err) {
+            console.log(err);
+        })
+})
+
+router.get("/articles/:id", function(req, res) {
+    //Access to the notes on a specific article
+    db.Article
+        .findOne({ _id: req.params.id })
+        .populate("note")
+        .then(function(DbArticle) {
+            res.json(DbArticle);
+        })
+        .catch(function(err) {
+            res.json(err);
         })
 })
 

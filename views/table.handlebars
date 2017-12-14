@@ -13,7 +13,11 @@
               <tr>
                  <td>{{this.title}}</td> 
                  <td> <a href={{this.link}}><i class="material-icons">link</i></a></td>
-                 <td><a class="waves-effect waves-light btn modal-trigger orange" href="#modal1"><i class="material-icons left">border_color</i>Add Notes</a></td>
+                 {{#if this.note}}
+                 <td><button data-target="modal2" data-id="{{this._id}}" class="btn modal-trigger">Look the Note</button></td>
+                {{else}}
+                <td><button data-target="modal1" data-id="{{this._id}}" class="btn modal-trigger orange">Add a note</button></td>
+                {{/if}}
               </tr>
               {{/each}}
 
@@ -24,16 +28,16 @@
         <div id="modal1" class="modal">
           <div class="modal-content">
               <h4>Note</h4>
-         <form action="">
-
+         <form id="form_notes" action="">
           <div class="input-field col s12">
-            <textarea id="textarea1" class="materialize-textarea"></textarea>
+            <input id="article_id" type="hidden">
+            <textarea id="note" class="materialize-textarea"></textarea>
             <label for="textarea1">Please insert your notes</label>
           </div>
         </form>
           </div>
           <div class="modal-footer">
             <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Disagree</a>
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat"id="agree">Agree</a>
           </div>
         </div>
