@@ -1,44 +1,56 @@
 $("document").ready(function() {
-    $('.modal').modal({
-        ready: function(modal, trigger) {
-            var id = $(trigger).data('id');
-            $('#article_id').val(id);
-        },
-    });
+    // This would start the modal option
+    $('.modal').modal({});
 
+
+    //THis function manage the collapse menu
     $(".button-collapse").sideNav();
     $('.slider').slider({
         indicators: false,
         height: 500
     });
+    // This function would manage the option to add notes. Button and route also
+    $('#modal1_click').on('click', function(event) {
+        // Woudl open the module and grap the Id from the button
+        $('#modal1').modal('open');
+        var id = $(this).data('id');
+        // There is the user is agree with the note, would save it into the database
+        $("#agree").on("click", function(event) {
+            event.preventDefault();
+            var note = {
+                id: id,
+                body: $("#note").val().trim()
+            }
+            $.ajax({
+                    method: 'POST',
+                    url: "/articles/" + id,
+                    data: note
+                })
+                .done(function(data) {
+                    location.reload();
+                    // This is clearing the form
+                    $("#article_id").val('');
+                    $("#note").val('');
+                });
+        });
+    });
 
+    //This function would react to the look notes button
 
-    $("#agree").on("click", function(event) {
+    $(".notes").on("click", function(event) {
         event.preventDefault();
-        var id = $('#article_id').val();
-        var note = {
-            id: id,
-            body: $("#note").val().trim()
-        }
+        var id = $(this).attr("data-id");
+        //This is creaning the DIV containing the notes response 
+        $('#modal-notes').empty();
         $.ajax({
-                method: 'POST',
-                url: "/articles/" + id,
-                data: note
+                method: 'GET',
+                url: "./articles/" + id
             })
             .done(function(data) {
-                location.reload();
-                $("#article_id").val('');
-                $("#note").val('');
+                // Here is creating dynamically the modal response 
+                $('#modal-notes').append('<h4>Notes:</h4>');
+                $('#modal-notes').append('<p>' + data.body + '</p>');
+                $('#modal2').modal('open');
             })
-
-
-
     })
-
-
-
-
-
-
-
 });

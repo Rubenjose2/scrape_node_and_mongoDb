@@ -58,35 +58,9 @@
         </nav>
     </header>
     <main>
-        <table class="centered">
-            <thead>
-                <tr>
-                    <th data-field="id">Name</th>
-                    <th data-field="name">Item Name</th>
-                    <th data-field="price">Item Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>.87</td>
-                </tr>
-                <tr>
-                    <td>Alan</td>
-                    <td>Jellybean</td>
-                    <td>.76</td>
-                </tr>
-                <tr>
-                    <td>Jonathan</td>
-                    <td>Lollipop</td>
-                    <td>.00</td>
-                </tr>
-            </tbody>
-        </table>
 
         <!-- Modal Trigger -->
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal Default</a>
+        <a class="waves-effect waves-light btn" href="#modal1" id="modal1_click">Modal Default</a>
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
@@ -100,24 +74,6 @@
             </div>
         </div>
 
-        <form action="">
-            <div class="input-field col s12 l6">
-                <input type="text" id="first_name" class="validate">
-                <label for="first_name">First Name</label>
-            </div>
-            <div class="input-field col s12 l6">
-                <input type="text" id="last_name" class="validate">
-                <label for="last_name">Last Name</label>
-            </div>
-            <div class="input-field col s12">
-                <input type="email" id="email" class="validate">
-                <label for="email" data-error="wrong" data-success="right">Email</label>
-            </div>
-            <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
-                <label for="textarea1">Textarea</label>
-            </div>
-        </form>
     </main>
     <footer class="page-footer light-green">
         <div class="container">
@@ -150,6 +106,13 @@
                 indicators: false,
                 height: 500
             });
+            $('.modal').modal();
+            $('#modal1_click').on('click', function(event) {
+                $('#modal1').modal('open');
+            })
+
+
+
         });
     </script>
 </body>

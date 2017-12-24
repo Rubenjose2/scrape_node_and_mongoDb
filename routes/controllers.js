@@ -14,12 +14,19 @@ router.get("/", function(req, res) {
     res.render("index");
 });
 
+const clear_database = (function() {
+    db.Article
+        .remove()
+        .exec()
+});
+
 // Route to scrape from the website
 router.get("/scraper", function(req, res) {
-    axios.get("http://www.cryptocoinsnews.com").then(function(response) {
+    clear_database();
+    axios.get("http://www.ccn.com").then(function(response) {
         var $ = cheerio.load(response.data);
         var result = [];
-        $("h3.entry-title").each(function(i, element) {
+        $("h4.entry-title").each(function(i, element) {
             var title = $(this)
                 .children("a")
                 .text();
@@ -91,7 +98,7 @@ router.get("/articles/:id", function(req, res) {
         .findOne({ _id: req.params.id })
         .populate("note")
         .then(function(DbArticle) {
-            res.json(DbArticle);
+            res.json(DbArticle.note);
         })
         .catch(function(err) {
             res.json(err);
