@@ -10,7 +10,7 @@ $("document").ready(function() {
         height: 500
     });
     // This function would manage the option to add notes. Button and route also
-    $('#modal1_click').on('click', function(event) {
+    $('.orange').on('click', function(event) {
         // Woudl open the module and grap the Id from the button
         $('#modal1').modal('open');
         var id = $(this).data('id');
