@@ -32,9 +32,11 @@ app.set("view engine", "handlebars");
 // Setup and Init of Database Mongo Db
 
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/newscraper", {
-    useMongoClient: true
-});
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database    
+
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.connect(MONGODB_URI, { useMongoClient: true });
 
 
 
