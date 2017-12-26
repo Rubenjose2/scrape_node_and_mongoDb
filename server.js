@@ -35,14 +35,9 @@ mongoose.Promise = Promise;
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database    
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = "mongodb://heroku_nfw3kxjh:sl8cn0a74go8equ50g5cglu6v4@ds131697.mlab.com:31697/heroku_nfw3kxjh";
 mongoose.connect(MONGODB_URI, { useMongoClient: true });
-
-
-
-
-
-
 
 // Starting the using of the Routing
 app.use("/", routes);
