@@ -11,14 +11,27 @@ var db = require("../models");
 //  Start Redering the Index page
 
 router.get("/", function(req, res) {
-    res.render("index");
+    db.Article
+        .find({})
+        .limit(2)
+        .then(function(DbArticle) {
+            res.render("index", { sort: DbArticle });
+        })
+        .catch(function(err) {
+            console.log(err);
+        })
 });
 
+
+//This function would clear the database
 const clear_database = (function() {
     db.Article
         .remove()
         .exec()
 });
+////////////////////////////////////////
+
+
 
 // Route to scrape from the website
 router.get("/scraper", function(req, res) {
@@ -103,6 +116,6 @@ router.get("/articles/:id", function(req, res) {
         .catch(function(err) {
             res.json(err);
         })
-})
+});
 
 module.exports = router
